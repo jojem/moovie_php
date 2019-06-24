@@ -1,0 +1,58 @@
+/*back of top films carts*/
+.item-0{
+	background-image: url('../img/sky7.jpg');
+	/*background-color: #63030b;*/
+}
+
+
+/*top films*/
+.top-item-1{
+	background-image: url('../img/home.jpg');
+}
+.top-item-2{
+	background-image: url('../img/earthlings.jpg');
+}
+.top-item-3{
+	background-image: url('../img/human.jpg');
+
+}
+.top-item-4{
+	background-image: url('../img/before_the_flood.jpg');
+}
+.top-item-5{
+	background-image: url('../img/live_in_a_day.jpg');
+
+}
+
+/*usual films*/
+
+.item-1{
+	background-image: url('../img/freedom_writers.jpg');
+}
+.item-2{
+	background-image: url('../img/wiplash.jpg');
+}
+.item-3{
+	background-image: url('../img/the_truman_show.jpg');
+}
+.item-4{
+	background-image: url('../img/dead_poets_society.jpg');
+}
+.item-5{
+	background-image: url('../img/green_book.jpg');
+}
+.item-6{
+	background-image: url('../img/good_will_hunting.jpg');
+}
+.item-7{
+	background-image: url('../img/beautiful_mind.jpg');
+}
+.item-8{
+	background-image: url('../img/the_professor_and_the_madman.jpg');
+}
+.item-9{
+	background-image: url('../img/pay_it_forward.jpg');
+}
+.item-10{
+	background-image: url('../img/detachment.jpg');
+}
