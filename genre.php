@@ -1,39 +1,26 @@
 <?php
 session_start();
 include('includes/db_connect.php');
+include('includes/head.php')
 ?>
-
-<html>
 <head>
-	<title>Moovie</title>
-	<meta charset="UTF-8">
-	<!-- <meta http-equiv="Refresh" content="5" /> -->
-	<link rel="stylesheet" href="css/reset.css">
-	<link rel="stylesheet" href="css/colors.css">
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/items.css">
-	<link href="https://fonts.googleapis.com/css?family=Julius+Sans+One|Lato|Montserrat:200|Open+Sans&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="css/item-page.css">
 </head>
 <body>
 	<?php
-		include('navbar.php');
+		include('includes/navbar.php');
 	?>
 	<div class="main-div">
 		<div class="left-content">
-			
-
 		</div>
 		<div class="content">
-			
+			<?php
+			$genres = mysqli_query($conn, "SELECT * FROM genres");
 
-	<?php
-	$genres = mysqli_query($conn, "SELECT * FROM genres");
-	
-	if(mysqli_num_rows($genres) == 0){
-		echo "Genres not found";
-	}else
-	{?>
+			if(mysqli_num_rows($genres) == 0){
+				echo "Genres not found";
+			} else
+			{?>
 
 			<?php
 			echo "<h1>Genres</h1>";
@@ -46,18 +33,14 @@ include('includes/db_connect.php');
 				}
 			?>
 
-	<?php
-	}
-$conn->close();
-?>
-
-
+			<?php
+				}
+			$conn->close();
+			?>
 		</div>
 		<footer>
 			<p>&copy By Jo, 2019</p>
 		</footer>
 	</div>
-<!-- 	<script src="js/index.js"></script>
-	<script src="js/elements.js"></script> -->
 </body>
 </html>

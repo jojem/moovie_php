@@ -1,29 +1,18 @@
 <?php
 	session_start();
 	include('includes/db_connect.php');
-?>
+	include('includes/head.php');
 
-<?php
 	$films = mysqli_query($conn, "SELECT * FROM films ORDER BY id_f DESC");
 ?>
-
-<html lang="en">
 <head>
-	<title>Moovie</title>
-	<meta charset="UTF-8">
-	<!-- <meta http-equiv="Refresh" content="5" /> -->
-	<link rel="stylesheet" href="css/reset.css">
-	<link rel="stylesheet" href="css/colors.css">
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/items.css">
-	<link href="https://fonts.googleapis.com/css?family=Julius+Sans+One|Lato|Montserrat|Open+Sans&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="OwlCarousel2-2.3.4/dist/assets/owl.carousel.css">
 	<link rel="stylesheet" href="OwlCarousel2-2.3.4/dist/assets/owl.theme.default.min.css">
 </head>
 
 <body>
 	<?php
-		include('navbar.php');
+		include('includes/navbar.php');
 	?>
 
 		<div class="owl-carousel owl-theme top-films baseline-items">

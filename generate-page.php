@@ -1,24 +1,17 @@
-<html>
+<?php
+	include('includes/db_connect.php');
+	include('includes/film_array.php');
+	include('includes/head.php');
+?>
 <head>
-	<title>Moovie</title>
-	<meta charset="UTF-8">
-	<!-- <meta http-equiv="Refresh" content="5" /> -->
-	<link rel="stylesheet" href="css/reset.css">
-	<link rel="stylesheet" href="css/colors.css">
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/items.css">
-	<link href="https://fonts.googleapis.com/css?family=Julius+Sans+One|Lato|Montserrat:200|Open+Sans&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="css/item-page.css">
 </head>
 <body>
 	<?php
-		include('includes/db_connect.php');
-		include('includes/film_array.php');
+		include('includes/navbar.php');
 
-		include('navbar.php');
-
-		$films = mysqli_query($conn, "SELECT * FROM films WHERE id_f = " . $_GET['id']);
-		$film = mysqli_fetch_assoc($films);
+		$current_film = $_GET['id']-1;
+		$film = $film_array[$current_film];
 	?>
 	<div class="main-div">
 		<div class="left-content">
@@ -60,26 +53,12 @@
 
 								//genre output
 								echo "<div class = 'info__item'><span>genre:</span> ";
-								$i = 0;
-								while($genre = mysqli_fetch_assoc($genres)){
-									$i++;
-									echo $genre['genre'];
-									if ( mysqli_num_rows($genres) != $i){
-										echo " | ";
-									}
-								}
+								echo implode(" | ", $film['genre']);
 								echo "</div>";
 
 								//country output
 								echo "<div class = 'info__item'><span>country:</span> ";
-								$i = 0;
-								while($country = mysqli_fetch_assoc($countries)){
-									$i++;
-									echo $country['country'];
-									if ( mysqli_num_rows($countries) != $i){
-										echo " | ";
-									}
-								}
+								echo implode(" | ", $film['country']);
 								echo "</div>";
 
 								//tagline output
@@ -92,9 +71,7 @@
 						?>
 				</div>
 				<!-- here will generate content -->
-				<?php
-					
-				?>
+				
 			</div>
 			<div id="images-section">
 				<div class="image-container fade">

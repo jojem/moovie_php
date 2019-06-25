@@ -1,28 +1,17 @@
 <?php
 session_start();
 include('includes/db_connect.php');
+include('includes/head.php');
 ?>
-
-<html>
 <head>
-	<title>Moovie</title>
-	<meta charset="UTF-8">
-	<!-- <meta http-equiv="Refresh" content="5" /> -->
-	<link rel="stylesheet" href="css/reset.css">
-	<link rel="stylesheet" href="css/colors.css">
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/items.css">
-	<link href="https://fonts.googleapis.com/css?family=Julius+Sans+One|Lato|Montserrat:200|Open+Sans&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="css/item-page.css">
 </head>
 <body>
 	<?php
-		include('navbar.php');
+		include('includes/navbar.php');
 	?>
 	<div class="main-div">
 		<div class="left-content">
-			
-
 		</div>
 		<div class="content">
 			<?php
@@ -36,7 +25,7 @@ include('includes/db_connect.php');
 				    while($country= $countries->fetch_assoc()) {
 				    	$country_films_count = mysqli_query($conn, "SELECT COUNT('id_f') AS 'total_count' FROM film_country WHERE id_c = ". $country["id_c"]);
 							$country_films_count_current = mysqli_fetch_assoc($country_films_count);
-				      echo "<p><a href='generate-page.php?country=".$country["id_c"]."'>id: " . $country["id_c"]. ".  " 
+				      echo "<p><a href='film_list.php?country=".$country["id_c"]."'>id: " . $country["id_c"]. ".  " 
 				      . $country["country"].' ('.$country_films_count_current['total_count'].')</a></p>';
 				    }
 				} else {
@@ -49,7 +38,5 @@ include('includes/db_connect.php');
 			<p>&copy By Jo, 2019</p>
 		</footer>
 	</div>
-<!-- 	<script src="js/index.js"></script>
-	<script src="js/elements.js"></script> -->
 </body>
 </html>

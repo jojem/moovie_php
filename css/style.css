@@ -7,7 +7,6 @@ body{
 	color: white;
 	letter-spacing: 1px;
 	line-height: 20px;
-
 }
 
 span{
@@ -32,14 +31,11 @@ p{
   font-size: 16pt;
   letter-spacing:1px;
 	font-family: 'Montserrat', sans-serif;
-
 }
 
 a{
 	text-decoration: none;
 	color: white;
-	
-
 }
 
 .main-div{
