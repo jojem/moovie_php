@@ -10,13 +10,19 @@ body{
 
 }
 
+span{
+	background-color: var(--main-color-red);
+	font-size: 16pt;
+	padding: 0 5px;
+}
+
 h1{
   font-size: 32pt;
   padding: 15px 0;
   line-height: 34pt;
 }
 h2{
-  font-size: 23pt;
+  font-size: 21pt;
   line-height: 30pt;
 }
 

@@ -3,6 +3,10 @@
 	include('includes/db_connect.php');
 ?>
 
+<?php
+	$films = mysqli_query($conn, "SELECT * FROM films ORDER BY id_f DESC");
+?>
+
 <html lang="en">
 <head>
 	<title>Moovie</title>
@@ -18,21 +22,9 @@
 </head>
 
 <body>
-	<div class="main-div">
-		<div class="topnav">
-			<div id="home-page" class="nav_item ">
-			<a class="active" href="index.html">Home</a>
-		</div>
-		<div id="films-page" class="nav_item">
-			<a href="film_list.php">Film List</a>
-		</div>
-		<div id="genre-page" class="nav_item">
-			<a href="genre.php">Genres</a>
-		</div>
-		<div id="country-page" class="nav_item">
-			<a href="country.php">Countries</a>
-		</div>
-		</div>
+	<?php
+		include('navbar.php');
+	?>
 
 		<div class="owl-carousel owl-theme top-films baseline-items">
 			<div class="item card">
@@ -58,56 +50,20 @@
 		</div>
 
 		<div class="main-container">
-			<div class="circle-cont ">
-				<a href="db_connection.php">
-					<img src="img/freedom_writers.jpg" alt="freedom writers">
-				</a>
-			</div>
-			<div class="circle-cont ">
-				<a href="item-page.html">
-					<img src="img/wiplash.jpg" alt="wiplash">
-				</a>
-			</div>
-			<div class="circle-cont ">
-				<a href="generate-page.html">
-					<img src="img/the_truman_show.jpg" alt="the truman show">
-				</a>
-			</div>
-			<div class="circle-cont ">
-				<a href="generate-page.html">
-					<img src="img/dead_poets_society.jpg" alt="dead poets society">
-				</a>
-			</div>
-			<div class="circle-cont ">
-				<a href="generate-page.html">
-					<img src="img/green_book.jpg" alt="green book">
-				</a>
-			</div>
-			<div class="circle-cont ">
-				<a href="generate-page.html">
-					<img src="img/good_will_hunting.jpg" alt="good will hunting">
-				</a>
-			</div>
-			<div class="circle-cont ">
-				<a href="generate-page.html">
-					<img src="img/beautiful_mind.jpg" alt="beautiful mind">
-				</a>
-			</div>
-			<div class="circle-cont ">
-				<a href="generate-page.html">
-					<img src="img/the_professor_and_the_madman.jpg" alt="the professor and the madman">
-				</a>
-			</div>
-			<div class="circle-cont ">
-				<a href="generate-page.html">
-					<img src="img/pay_it_forward.jpg" alt="pay it forward">
-				</a>
-			</div>
-			<div class="circle-cont ">
-				<a href="generate-page.html">
-					<img src="img/detachment.jpg" alt="detachment">
-				</a>
-			</div>
+			<?php
+			//output circle images of films
+				while($film = mysqli_fetch_assoc($films)){
+					?>
+					<div class="circle-cont ">
+						<a href="generate-page.php?id=<?php echo $film['id_f'];?>">
+
+							<img src="img/<?php echo $film['poster'];?>.jpg"
+							 alt="<?php echo $film['poster'];?>">
+						</a>
+					</div>
+					<?php
+				}
+			?>
 		</div>
 		<footer>
 			<p>&copy By Jo, 2019</p>

@@ -16,20 +16,9 @@ include('includes/db_connect.php');
 	<link rel="stylesheet" href="css/item-page.css">
 </head>
 <body>
-	<div class="topnav">
-		<div id="home-page" class="nav_item ">
-			<a class="active" href="index.html">Home</a>
-		</div>
-		<div id="films-page" class="nav_item">
-			<a href="film_list.php">Film List</a>
-		</div>
-		<div id="genre-page" class="nav_item">
-			<a href="genre.php">Genres</a>
-		</div>
-		<div id="country-page" class="nav_item">
-			<a href="country.php">Countries</a>
-		</div>
-	</div>
+	<?php
+		include('navbar.php');
+	?>
 	<div class="main-div">
 		<div class="left-content">
 			
@@ -46,17 +35,16 @@ include('includes/db_connect.php');
 	}else
 	{?>
 
-		<ul>
 			<?php
+			echo "<h1>Genres</h1>";
 			//return genres and count of films 
 			// example: DRAMA (3)
 				while(($genre = mysqli_fetch_assoc($genres)) ){
 					$genre_films_count = mysqli_query($conn, "SELECT COUNT('id_f') AS 'total_count' FROM film_genre WHERE id_g = ". $genre["id_g"]);
 					$genre_films_count_current = mysqli_fetch_assoc($genre_films_count);
-					echo "<li>".$genre['genre'].' ('.$genre_films_count_current['total_count'].')</li>';
+					echo "<p><a href = 'film_list.php?genre=".$genre['id_g']."'>".$genre['genre'].' ('.$genre_films_count_current['total_count'].')</a></p>';
 				}
 			?>
-		</ul>
 
 	<?php
 	}

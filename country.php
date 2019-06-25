@@ -16,20 +16,9 @@ include('includes/db_connect.php');
 	<link rel="stylesheet" href="css/item-page.css">
 </head>
 <body>
-	<div class="topnav">
-		<div id="home-page" class="nav_item ">
-			<a class="active" href="index.html">Home</a>
-		</div>
-		<div id="films-page" class="nav_item">
-			<a href="film_list.php">Film List</a>
-		</div>
-		<div id="genre-page" class="nav_item">
-			<a href="genre.php">Genres</a>
-		</div>
-		<div id="country-page" class="nav_item">
-			<a href="country.php">Countries</a>
-		</div>
-	</div>
+	<?php
+		include('navbar.php');
+	?>
 	<div class="main-div">
 		<div class="left-content">
 			
@@ -39,16 +28,19 @@ include('includes/db_connect.php');
 			<?php
 
 				$sql = "SELECT id_c, country FROM countries";
-				$result = $conn->query($sql);
+				$countries = $conn->query($sql);
 				echo "<h1>Countries</h1>";
 
-				if ($result->num_rows > 0) {
+				if ($countries->num_rows > 0) {
 				    // output data of each row
-				    while($row = $result->fetch_assoc()) {
-				        echo "<p>"."id: " . $row["id_c"]. " - Country: " . $row["country"]."</p>" ;
+				    while($country= $countries->fetch_assoc()) {
+				    	$country_films_count = mysqli_query($conn, "SELECT COUNT('id_f') AS 'total_count' FROM film_country WHERE id_c = ". $country["id_c"]);
+							$country_films_count_current = mysqli_fetch_assoc($country_films_count);
+				      echo "<p><a href='generate-page.php?country=".$country["id_c"]."'>id: " . $country["id_c"]. ".  " 
+				      . $country["country"].' ('.$country_films_count_current['total_count'].')</a></p>';
 				    }
 				} else {
-				    echo "0 results";
+				    echo "0 countries";
 				}
 				$conn->close();
 			?>

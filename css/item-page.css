@@ -1,6 +1,43 @@
 p{
   color: white;
   font-size: 16pt;
+  padding: 10px 0 20px 0;
+}
+
+a:hover{
+	color:  var(--color-accent);
+}
+
+h1{
+	padding: 0 0 20px 0;
+}
+h1::after{
+	content: "";
+	color: var(--main-color-red);
+}
+h1::before{
+	content: "";
+	color: var(--main-color-red);
+}
+
+
+h2{
+	padding: 30px 0 10px 0;
+}
+
+h2::before{
+	content: '\2726' ;
+	color: var(--main-color-red);
+}
+
+h2::after{
+	content: '\2726' ;
+	color: var(--main-color-red);
+}
+
+::selection {
+	color:  var(--color-accent);
+  background: var(--main-color-red);
 }
 
 body{
@@ -27,7 +64,7 @@ body{
 }
 .block{
 	display: block;
-	height: 220px;
+	height: auto;
 }
 .content{
 	grid-area: main;
@@ -46,7 +83,8 @@ body{
 }
 
 .poster{
-	top: 100px;
+	top: 125px;
+	margin-bottom: 30px;
 }
 
 .info__item{

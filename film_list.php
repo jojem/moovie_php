@@ -16,54 +16,47 @@ include('includes/db_connect.php');
 	<link rel="stylesheet" href="css/item-page.css">
 </head>
 <body>
-
-
 	<?php
-				$sql = "SELECT poster FROM films";
-				$result = $conn->query($sql);
+		include('includes/film_array.php');
+		include('navbar.php');
 	?>
-
-
-	<div class="topnav">
-		<div id="home-page" class="nav_item ">
-			<a class="active" href="index.html">Home</a>
-		</div>
-		<div id="films-page" class="nav_item">
-			<a href="film_list.php">Film List</a>
-		</div>
-		<div id="genre-page" class="nav_item">
-			<a href="genre.php">Genres</a>
-		</div>
-		<div id="country-page" class="nav_item">
-			<a href="country.php">Countries</a>
-		</div>
 	</div>
 	<div class="main-div">
 		<div class="left-content">
 				<?php
-				if ($result->num_rows > 0) {
+				if ($films->num_rows > 0) {
 			    // output data of each row
-			    while($row = $result->fetch_assoc()) {
-							echo "<div class='circle-cont poster'><img src='img/" . $row["poster"] . ".jpg' alt='wiplash'></div>" ;
+			   foreach($film_array as $film) {
+			    	?>
+							<div class="circle-cont poster">
+								<a href="generate-page.php?id=<?php echo $film['id_f'];?>">
+
+									<img src="img/<?php echo $film['poster'];?>.jpg"
+									 alt="<?php echo $film['poster'];?>">
+								</a>
+							</div> 
+						<?php
 					} 
 				}
 				?>
 		</div>
 		<div class="content">
 			<?php
-				$sql = "SELECT id_f, film_name, year, rating, runtime FROM films";
-				$result = $conn->query($sql);
+				echo "<h1>Film List</h1>";
 
-				echo "<h1>Film List</h1><br>";
-
-				if ($result->num_rows > 0) {
+				if ($films->num_rows > 0) {
 				    // output data of each row
-				    while($row = $result->fetch_assoc()) {
-				        echo "<br><div class = 'block'><h2>" . $row["id_f"]. ". ". $row["film_name"]."</h2><p>Year: " . $row["year"]."</p>"
-				        ."<p>Rating: " . $row["rating"]."</p>"."<p>Runtime: " . $row["runtime"]." min</p></div>" ;
+				    foreach($film_array as $film) {
+				        echo "<br><div class = 'block'><h2>" . $film["id_f"]. ". ". $film["film_name"]."</h2><p>Year: " . $film["year"]."</p>"
+				        ."<p>Rating: " . $film["rating"]."</p>"."<p>Runtime: " . $film["runtime"]." min</p>"
+				        ."<p>Genre: " ;
+				        echo implode(" | ", $film['genre']);
+				        echo "</p><p>Country: " ;
+				        echo implode(" | ", $film['country']);
+				        echo "</p></div>" ;
 				    }
 				} else {
-				    echo "0 results";
+				    echo "0 films";
 				}
 				$conn->close();
 			?>
@@ -72,7 +65,5 @@ include('includes/db_connect.php');
 			<p>&copy By Jo, 2019</p>
 		</footer>
 	</div>
-<!-- 	<script src="js/index.js"></script>
-	<script src="js/elements.js"></script> -->
 </body>
 </html>
