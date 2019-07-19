@@ -19,7 +19,7 @@ include('includes/head.php')
 			<div>
 			  <form action="insert_film.php" id= "insert_form" method="post">
 			    <label for="fname">Film Name</label>
-			    <input type="text" id="film_name" name="filmname" placeholder="Film name..">
+			    <input type="text" id="film_name" name="film_name" placeholder="Film name..">
 
 			    <label for="year">Year</label>
 			    <select id="year" name="year">
@@ -149,11 +149,28 @@ include('includes/head.php')
 			    </div>
 			   
 			    <label for="country">Country</label>
-			    <select id="country" name="country">
-			    			<option value="usa">USA</option>
-						    <option value="russia">RUSSIA</option>
-						    <option value="uk">UK</option>
+			    <select multiple id="country" name="country[]">
+			    			<?php
+				    			$sql = "SELECT id_c, country FROM countries";
+									$countries = $conn->query($sql);
+			    				while($country= $countries->fetch_assoc()){
+			    					echo "<option value='".$country['id_c']."'>".$country['country']."</option>";
+						  		}
+						  	?>
 			    </select>
+
+			    <label for="genre">Genres</label>
+			    <select multiple id="genre" name="genre[]">
+			    			<?php
+			    				$sql = "SELECT id_g, genre FROM genres";
+									$genres = $conn->query($sql);
+			    				while($genre= $genres->fetch_assoc()){
+			    					echo "<option value='".$genre['id_g']."'>".$genre['genre']."</option>";
+						  		}
+						  	?>
+			    </select>
+
+
 				  <label for="decription">Description</label><br>
 				  <textarea rows="4" name="description" id="description" form="insert_form">Description</textarea><br>
 
@@ -164,7 +181,7 @@ include('includes/head.php')
 				  <textarea rows="4" cols="50" name="taglines" id="taglines" form="insert_form"> Taglines</textarea><br>
 
 				  <label for="poster">Poster</label>
-			    <input type="url" id="poster" name="poster" placeholder="Enter a URL of the poster">
+			    <input type="text" id="poster" name="poster" placeholder="Enter a URL of the poster">
 
 				  <input type="submit" value="Submit">
 			  </form>

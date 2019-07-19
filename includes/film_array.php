@@ -1,20 +1,20 @@
 	<?php
-		$get_country =  $_GET['country'];
-		$get_genre = $_GET['genre'];
+		$get_country_id =  $_GET['country'];
+		$get_genre_id = $_GET['genre'];
 
-		if ($_GET['country'] != NULL){
-			$sql = "SELECT * FROM films WHERE id_f IN (SELECT id_f FROM film_country WHERE id_c = $get_country)" ;
-		}
-		elseif($_GET['genre'] != NULL){
-			$sql = "SELECT * FROM films WHERE id_f IN (SELECT id_f FROM film_genre WHERE id_g = $get_genre)" ;
-		}
-		elseif(($_GET['genre'] != NULL) && ($_GET['country'] != NULL)){
+		if(($get_genre_id != NULL) && ($get_country_id != NULL)){
 			$sql = "SELECT * FROM films
-							WHERE id_f IN 
-							(SELECT id_f FROM film_country
-							WHERE id_c = $get_country AND id_f IN
-							(SELECT id_f FROM film_genre
-							WHERE id_g = $get_genre))" ;
+							WHERE films.id_f IN 
+							(SELECT film_country.id_f FROM film_country
+							WHERE film_country.id_c = $get_country_id AND id_f IN
+							(SELECT film_genre.id_f FROM film_genre
+							WHERE film_genre.id_g = $get_genre_id))" ;
+		}
+		elseif ($get_country_id != NULL){
+			$sql = "SELECT * FROM films WHERE id_f IN (SELECT id_f FROM film_country WHERE id_c = $get_country_id)" ;
+		}
+		elseif($get_genre_id != NULL){
+			$sql = "SELECT * FROM films WHERE films.id_f IN (SELECT film_genre.id_f FROM film_genre WHERE film_genre.id_g = $get_genre_id)" ;
 		}
 		else{
 			$sql = "SELECT * FROM films " ;

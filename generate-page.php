@@ -10,8 +10,15 @@
 	<?php
 		include('includes/navbar.php');
 
-		$current_film = $_GET['id']-1;
-		$film = $film_array[$current_film];
+		$get_id = $_GET['id'];
+		foreach ($film_array as $f){
+			if ($f['id_f'] == $get_id){
+				$film = $f;
+			}
+		}
+
+		
+		// $film = $film_array[$current_film];
 	?>
 	<div class="main-div">
 		<div class="left-content">
